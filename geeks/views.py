@@ -1,18 +1,11 @@
 from django.shortcuts import render
-from .forms import GeeksForm
-from django.http import HttpResponse
 
 
 def home_view(request):
-    context = {}
+    if request.method == 'POST':
+        your_name = request.POST.get('your_name', '')
+        print(f"Form submitted: {your_name}")
+    else:
+        print("This is a GET request. Probably just loading the page.")
 
-    # create object of form
-    form = GeeksForm(request.POST or None, request.FILES or None)
-
-    # check if form data is valid
-    if form.is_valid():
-        # save the form data to model
-        form.save()
-
-    context['form'] = form
-    return render(request, "geeks/home.html", context)
+    return render(request, 'geeks/home.html')

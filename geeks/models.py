@@ -10,4 +10,8 @@ class GeeksModel(models.Model):
     img = models.ImageField(upload_to='static/img', default=None)
 
     def __str__(self):
-        return f'{self.title},{self.description}'
+        return self.title
+
+
+
+
